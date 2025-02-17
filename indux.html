@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        /* Product card styles */
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            max-width: 300px;
+        }
+
+        .product-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .order-button {
+            background-color: #FF6347; /* Tomato red color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .order-button:hover {
+            background-color: #FF4500; /* Darker red on hover */
+        }
+
+        /* Booking form styles */
+        .booking-form-container {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+        }
+
+        .booking-form {
+            width: 100%;
+        }
+
+        .booking-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .booking-form input,
+        .booking-form textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .booking-form button {
+            background-color: #FF6347; /* Tomato red color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .booking-form button:hover {
+            background-color: #FF4500; /* Darker red on hover */
+        }
+
+        /* Close button styles */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .close-button:hover {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="product-card">
+    <div class="product-title">Product 1</div>
+    <div class="product-description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. 
+    </div>
+    <button class="order-button" onclick="openBookingForm('Product 1')">Order Now</button>
+</div>
+
+<div class="product-card">
+    <div class="product-title">Product 2</div>
+    <div class="product-description">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. 
+    </div>
+    <button class="order-button" onclick="openBookingForm('Product 2')">Order Now</button>
+</div>
+
+<!-- Booking Form Container -->
+<div id="bookingFormContainer" class="booking-form-container">
+    <div id="bookingForm" class="booking-form">
+        <button class="close-button" onclick="closeBookingForm()">&times;</button>
+        <h2>Booking Form</h2>
+        <form action="process_booking.php" method="POST">
+            <input type="text" id="productName" name="productName" style="display: none;">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+            <label for="productType">Product Type:</label>
+            <input type="text" id="productType" name="productType" readonly><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openBookingForm(productName) {
+        document.getElementById("productName").value = productName;
+        document.getElementById("productType").value = productName;
+        document.getElementById("bookingFormContainer").style.display = "block";
+    }
+
+    function closeBookingForm() {
+        document.getElementById("bookingFormContainer").style.display = "none";
+    }
+</script>
+
+</body>
+</html>
